@@ -23,7 +23,7 @@ class Channel(object):
     FLUSHER = BYTES_LITERAL("\n") # cause any line-buffered layers below us to flush
     __slots__ = ["stream", "compress"]
 
-    def __init__(self, stream, compress = True):
+    def __init__(self, stream, compress = False):
         self.stream = stream
         if not zlib:
             compress = False

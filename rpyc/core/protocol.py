@@ -600,6 +600,8 @@ class Connection(object):
         return self._access_attr(obj, name, (value,), "_rpyc_setattr", "allow_setattr", setattr)
     def _handle_callattr(self, obj, name, args, kwargs=()):
         obj = self._handle_getattr(obj, name)
+        if not args: # issue #293, HACK
+            args = (name,)
         return self._handle_call(obj, args, kwargs)
     def _handle_ctxexit(self, obj, exc):
         if exc:
